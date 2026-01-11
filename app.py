@@ -195,7 +195,6 @@ if prompt:
         f"""
         <div class="chat-user-wrapper">
             <div class="chat-card">{prompt}</div>
-            <div class="chat-icon">🧑</div>
         </div>
         """,
         unsafe_allow_html=True
@@ -217,7 +216,6 @@ if prompt:
     st.markdown(
         f"""
         <div class="chat-bot-wrapper">
-            <div class="chat-icon">🤖</div>
             <div class="chat-card">{response}</div>
         </div>
         """,
