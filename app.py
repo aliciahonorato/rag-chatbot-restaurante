@@ -13,31 +13,25 @@ st.set_page_config(
 # =====================
 # CSS – IDENTIDADE VISUAL
 # =====================
-import streamlit as st
-
 st.markdown(
     """
     <style>
 
-    /* ======================
-       FUNDO GERAL
-    ====================== */
+    /* FUNDO GERAL */
     .stApp {
         background-color: #ecd6b5;
         color: #5d1d18;
         font-family: "Segoe UI", sans-serif;
     }
 
-    /* ======================
-       TEXTO GERAL
-    ====================== */
     p, span, div, label {
         color: #5d1d18 !important;
     }
 
     /* ======================
-       HEADER (TOPO)
+       HEADER
     ====================== */
+
     header[data-testid="stHeader"] {
         background-color: #fdaf19;
     }
@@ -46,30 +40,48 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* ======================
-       FOOTER (RODAPÉ)
-    ====================== */
+    /* FOOTER */
     footer {
-        background-color: #fdaf19;
+        background-color: #e9c1a8;
     }
 
     footer * {
-        color: #ffffff !important;
+        color: #5d1d18 !important;
     }
 
-    /* ======================
-       ÁREA DO CHAT
-    ====================== */
-    section[data-testid="stChatMessage"] {
+    /* SIDEBAR */
+    section[data-testid="stSidebar"] {
         background-color: #e9c1a8;
-        border-radius: 12px;
-        padding: 10px;
-        margin-bottom: 8px;
     }
 
-    /* ======================
-       INPUT DO USUÁRIO
-    ====================== */
+    section[data-testid="stSidebar"] * {
+        color: #5d1d18 !important;
+    }
+
+
+    /* CARDS DO CHAT */
+    .chat-card {
+        background-color: #ffffff;
+        color: #5d1d18;
+        padding: 12px 16px;
+        border-radius: 14px;
+        max-width: 75%;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .chat-user {
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .chat-bot {
+        margin-right: auto;
+        text-align: left;
+    }
+
+    /* INPUT */
     textarea {
         background-color: #e9c1a8 !important;
         color: #5d1d18 !important;
@@ -81,17 +93,11 @@ st.markdown(
         color: #5d1d18aa;
     }
 
-    /* ======================
-       BARRA AZUL/CINZA (CHAT INPUT CONTAINER)
-    ====================== */
     div[data-testid="stChatInput"] {
         background-color: #ecd6b5 !important;
         border-top: 1px solid #5d1d18;
     }
 
-    /* ======================
-       BOTÕES
-    ====================== */
     button {
         background-color: #5d1d18 !important;
         color: #ffffff !important;
@@ -108,14 +114,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # =====================
 # HEADER
 # =====================
 st.markdown(
     """
     <h1 style='text-align: center;'>Assistente IA do Restaurante</h1>
-    <p class="subtitle">
+    <p style='text-align: center;'>
         Fique à vontade para perguntar sobre pratos, preços ou opções do cardápio 💛
     </p>
     <hr>
@@ -139,7 +144,7 @@ with st.sidebar:
     st.caption("🍴 Projeto BlueAcademy • IA aplicada")
 
 # =====================
-# SESSION STATE (CHAT)
+# SESSION STATE
 # =====================
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -151,39 +156,47 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         if msg["role"] == "assistant":
             st.markdown(
-                f"<div class='chatbot-box'>{msg['content']}</div>",
+                f"<div class='chat-card chat-bot'>{msg['content']}</div>",
                 unsafe_allow_html=True
             )
         else:
-            st.markdown(msg["content"])
+            st.markdown(
+                f"<div class='chat-card chat-user'>{msg['content']}</div>",
+                unsafe_allow_html=True
+            )
 
 # =====================
-# INPUT
+# INPUT (BUG CORRIGIDO)
 # =====================
 prompt = st.chat_input("O que você gostaria de saber hoje?")
 
 if prompt:
+    # mostra a pergunta imediatamente
     st.session_state.messages.append(
         {"role": "user", "content": prompt}
     )
 
+    with st.chat_message("user"):
+        st.markdown(
+            f"<div class='chat-card chat-user'>{prompt}</div>",
+            unsafe_allow_html=True
+        )
+
+    # gera resposta
     with st.chat_message("assistant"):
         with st.spinner("Conferindo o cardápio..."):
             try:
                 response = answer_question(prompt)
-                st.markdown(
-                    f"<div class='chatbot-box'>{response}</div>",
-                    unsafe_allow_html=True
-                )
             except Exception:
                 response = (
                     "Não consegui encontrar essa informação agora. "
                     "Pode tentar novamente?"
                 )
-                st.markdown(
-                    f"<div class='chatbot-box'>{response}</div>",
-                    unsafe_allow_html=True
-                )
+
+            st.markdown(
+                f"<div class='chat-card chat-bot'>{response}</div>",
+                unsafe_allow_html=True
+            )
 
     st.session_state.messages.append(
         {"role": "assistant", "content": response}
