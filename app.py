@@ -48,7 +48,7 @@ st.markdown(
 
     /* SIDEBAR  */
     section[data-testid="stSidebar"] {
-        background-color: #fdaf19;
+        background-color: #f3ca75;
     }
 
     section[data-testid="stSidebar"] * {
@@ -165,7 +165,6 @@ for msg in st.session_state.messages:
         st.markdown(
             f"""
             <div class="chat-bot-wrapper">
-                <div class="chat-icon">🤖</div>
                 <div class="chat-card">{msg['content']}</div>
             </div>
             """,
@@ -176,7 +175,6 @@ for msg in st.session_state.messages:
             f"""
             <div class="chat-user-wrapper">
                 <div class="chat-card">{msg['content']}</div>
-                <div class="chat-icon">👩🏽‍🍳</div>
             </div>
             """,
             unsafe_allow_html=True
