@@ -28,10 +28,7 @@ st.markdown(
         color: #5d1d18 !important;
     }
 
-    /* ======================
-       HEADER
-    ====================== */
-
+    /* HEADER */
     header[data-testid="stHeader"] {
         background-color: #fdaf19;
     }
@@ -42,24 +39,25 @@ st.markdown(
 
     /* FOOTER */
     footer {
-        background-color: #e9c1a8;
+        background-color: #fdaf19;
     }
 
     footer * {
-        color: #5d1d18 !important;
+        color: #ffffff !important;
     }
 
-    /* SIDEBAR */
+    /* SIDEBAR – dourado mais claro */
     section[data-testid="stSidebar"] {
-        background-color: #e9c1a8;
+        background-color: #f3ddc0;
     }
 
     section[data-testid="stSidebar"] * {
         color: #5d1d18 !important;
     }
 
-
-    /* CARDS DO CHAT */
+    /* ======================
+       CARDS DO CHAT
+    ====================== */
     .chat-card {
         background-color: #ffffff;
         color: #5d1d18;
@@ -69,16 +67,26 @@ st.markdown(
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         margin-bottom: 10px;
         line-height: 1.5;
+        display: inline-block;
     }
 
-    .chat-user {
-        margin-left: auto;
-        text-align: right;
+    .chat-user-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-bottom: 10px;
     }
 
-    .chat-bot {
-        margin-right: auto;
-        text-align: left;
+    .chat-bot-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .chat-icon {
+        font-size: 1.3rem;
+        margin-top: 4px;
     }
 
     /* INPUT */
@@ -153,51 +161,67 @@ if "messages" not in st.session_state:
 # CHAT HISTORY
 # =====================
 for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        if msg["role"] == "assistant":
-            st.markdown(
-                f"<div class='chat-card chat-bot'>{msg['content']}</div>",
-                unsafe_allow_html=True
-            )
-        else:
-            st.markdown(
-                f"<div class='chat-card chat-user'>{msg['content']}</div>",
-                unsafe_allow_html=True
-            )
+    if msg["role"] == "assistant":
+        st.markdown(
+            f"""
+            <div class="chat-bot-wrapper">
+                <div class="chat-icon">🤖</div>
+                <div class="chat-card">{msg['content']}</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            f"""
+            <div class="chat-user-wrapper">
+                <div class="chat-card">{msg['content']}</div>
+                <div class="chat-icon">🧑</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 # =====================
-# INPUT (BUG CORRIGIDO)
+# INPUT
 # =====================
 prompt = st.chat_input("O que você gostaria de saber hoje?")
 
 if prompt:
-    # mostra a pergunta imediatamente
+    # mostra pergunta imediatamente
     st.session_state.messages.append(
         {"role": "user", "content": prompt}
     )
 
-    with st.chat_message("user"):
-        st.markdown(
-            f"<div class='chat-card chat-user'>{prompt}</div>",
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        f"""
+        <div class="chat-user-wrapper">
+            <div class="chat-card">{prompt}</div>
+            <div class="chat-icon">🧑</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    # gera resposta
-    with st.chat_message("assistant"):
-        with st.spinner("Conferindo o cardápio..."):
-            try:
-                response = answer_question(prompt)
-            except Exception:
-                response = (
-                    "Não consegui encontrar essa informação agora. "
-                    "Pode tentar novamente?"
-                )
-
-            st.markdown(
-                f"<div class='chat-card chat-bot'>{response}</div>",
-                unsafe_allow_html=True
+    with st.spinner("Conferindo o cardápio..."):
+        try:
+            response = answer_question(prompt)
+        except Exception:
+            response = (
+                "Não consegui encontrar essa informação agora. "
+                "Pode tentar novamente?"
             )
 
     st.session_state.messages.append(
         {"role": "assistant", "content": response}
+    )
+
+    st.markdown(
+        f"""
+        <div class="chat-bot-wrapper">
+            <div class="chat-icon">🤖</div>
+            <div class="chat-card">{response}</div>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
