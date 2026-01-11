@@ -24,6 +24,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+with st.sidebar:
+    st.markdown("### ℹ️ Sobre")
+    st.write(
+        "Este chatbot utiliza **RAG** "
+        "para responder perguntas com base no cardápio do restaurante."
+    )
+
+
 # =====================
 # SESSION STATE (CHAT)
 # =====================
