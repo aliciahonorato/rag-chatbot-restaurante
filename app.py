@@ -13,63 +13,96 @@ st.set_page_config(
 # =====================
 # CSS – IDENTIDADE VISUAL
 # =====================
+import streamlit as st
+
 st.markdown(
     """
     <style>
-    /* Fundo geral */
+
+    /* ======================
+       FUNDO GERAL
+    ====================== */
     .stApp {
         background-color: #ecd6b5;
         color: #5d1d18;
+        font-family: "Segoe UI", sans-serif;
     }
 
-    /* Remove barras padrão (topo e rodapé) */
-    header, footer {
-        visibility: hidden;
-    }
-
-    /* Sidebar */
-    section[data-testid="stSidebar"] {
-        background-color: #e9c1a8;
-        color: #5d1d18;
-    }
-
-    /* Texto padrão */
-    p, span, label, div {
+    /* ======================
+       TEXTO GERAL
+    ====================== */
+    p, span, div, label {
         color: #5d1d18 !important;
     }
 
-    /* Títulos */
-    h1, h2, h3, h4 {
-        color: #5d1d18;
+    /* ======================
+       HEADER (TOPO)
+    ====================== */
+    header[data-testid="stHeader"] {
+        background-color: #fdaf19;
     }
 
-    /* Caixa das mensagens do bot */
-    .chatbot-box {
+    header[data-testid="stHeader"] * {
+        color: #ffffff !important;
+    }
+
+    /* ======================
+       FOOTER (RODAPÉ)
+    ====================== */
+    footer {
+        background-color: #fdaf19;
+    }
+
+    footer * {
+        color: #ffffff !important;
+    }
+
+    /* ======================
+       ÁREA DO CHAT
+    ====================== */
+    section[data-testid="stChatMessage"] {
         background-color: #e9c1a8;
-        padding: 16px;
         border-radius: 12px;
-        border-left: 6px solid #fdaf19;
-        color: #5d1d18;
+        padding: 10px;
+        margin-bottom: 8px;
     }
 
-    /* Input do chat */
+    /* ======================
+       INPUT DO USUÁRIO
+    ====================== */
     textarea {
-        background-color: #ffffff;
-        color: #5d1d18;
+        background-color: #e9c1a8 !important;
+        color: #5d1d18 !important;
+        border-radius: 10px;
+        border: 1px solid #5d1d18;
+    }
+
+    textarea::placeholder {
+        color: #5d1d18aa;
+    }
+
+    /* ======================
+       BARRA AZUL/CINZA (CHAT INPUT CONTAINER)
+    ====================== */
+    div[data-testid="stChatInput"] {
+        background-color: #ecd6b5 !important;
+        border-top: 1px solid #5d1d18;
+    }
+
+    /* ======================
+       BOTÕES
+    ====================== */
+    button {
+        background-color: #5d1d18 !important;
+        color: #ffffff !important;
         border-radius: 10px;
     }
 
-    /* Remove bordas e foco azul */
-    textarea:focus, input:focus {
-        outline: none !important;
-        box-shadow: none !important;
-        border: 2px solid #fdaf19 !important;
+    button:hover {
+        background-color: #fdaf19 !important;
+        color: #5d1d18 !important;
     }
 
-    /* Spinner */
-    .stSpinner > div {
-        border-top-color: #fdaf19 !important;
-    }
     </style>
     """,
     unsafe_allow_html=True
