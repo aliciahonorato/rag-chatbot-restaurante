@@ -46,9 +46,9 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* SIDEBAR – dourado mais claro */
+    /* SIDEBAR  */
     section[data-testid="stSidebar"] {
-        background-color: #f3ddc0;
+        background-color: #fdaf19;
     }
 
     section[data-testid="stSidebar"] * {
@@ -176,7 +176,7 @@ for msg in st.session_state.messages:
             f"""
             <div class="chat-user-wrapper">
                 <div class="chat-card">{msg['content']}</div>
-                <div class="chat-icon">🧑</div>
+                <div class="chat-icon">👩🏽‍🍳</div>
             </div>
             """,
             unsafe_allow_html=True
