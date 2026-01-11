@@ -13,33 +13,25 @@ st.set_page_config(
 # =====================
 # CSS – IDENTIDADE VISUAL
 # =====================
-import streamlit as st
-
 st.markdown(
     """
     <style>
 
     /* ======================
-       FUNDO GERAL
+       FUNDO GLOBAL
     ====================== */
-    .stApp {
+    html, body, .stApp {
         background-color: #ecd6b5;
         color: #5d1d18;
         font-family: "Segoe UI", sans-serif;
     }
 
     /* ======================
-       TEXTO GERAL
-    ====================== */
-    p, span, div, label {
-        color: #5d1d18 !important;
-    }
-
-    /* ======================
-       HEADER (TOPO)
+       HEADER
     ====================== */
     header[data-testid="stHeader"] {
         background-color: #fdaf19;
+        border-bottom: none;
     }
 
     header[data-testid="stHeader"] * {
@@ -47,7 +39,68 @@ st.markdown(
     }
 
     /* ======================
-       FOOTER (RODAPÉ)
+       CONTEÚDO PRINCIPAL
+    ====================== */
+    section.main {
+        background-color: #ecd6b5;
+    }
+
+    /* ======================
+       CHAT MESSAGES
+    ====================== */
+    div[data-testid="stChatMessage"] {
+        background-color: #e9c1a8;
+        border-radius: 14px;
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    /* ======================
+       CONTAINER INFERIOR (O "FOOTER FEIO")
+    ====================== */
+    div[data-testid="stChatInput"] {
+        background-color: #fdaf19 !important;
+        border-top: 2px solid #5d1d18;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    /* REMOVE FUNDO PRETO INTERNO */
+    div[data-testid="stChatInput"] > div {
+        background-color: transparent !important;
+    }
+
+    /* ======================
+       INPUT DO USUÁRIO
+    ====================== */
+    textarea {
+        background-color: #e9c1a8 !important;
+        color: #5d1d18 !important;
+        border-radius: 12px;
+        border: 1px solid #5d1d18;
+        padding: 10px;
+    }
+
+    textarea::placeholder {
+        color: #5d1d18aa;
+    }
+
+    /* ======================
+       BOTÃO DE ENVIAR
+    ====================== */
+    button {
+        background-color: #5d1d18 !important;
+        color: #ffffff !important;
+        border-radius: 10px;
+    }
+
+    button:hover {
+        background-color: #e9c1a8 !important;
+        color: #5d1d18 !important;
+    }
+
+    /* ======================
+       FOOTER REAL (SE EXISTIR)
     ====================== */
     footer {
         background-color: #fdaf19;
@@ -57,57 +110,10 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* ======================
-       ÁREA DO CHAT
-    ====================== */
-    section[data-testid="stChatMessage"] {
-        background-color: #e9c1a8;
-        border-radius: 12px;
-        padding: 10px;
-        margin-bottom: 8px;
-    }
-
-    /* ======================
-       INPUT DO USUÁRIO
-    ====================== */
-    textarea {
-        background-color: #e9c1a8 !important;
-        color: #5d1d18 !important;
-        border-radius: 10px;
-        border: 1px solid #5d1d18;
-    }
-
-    textarea::placeholder {
-        color: #5d1d18aa;
-    }
-
-    /* ======================
-       BARRA AZUL/CINZA (CHAT INPUT CONTAINER)
-    ====================== */
-    div[data-testid="stChatInput"] {
-        background-color: #ecd6b5 !important;
-        border-top: 1px solid #5d1d18;
-    }
-
-    /* ======================
-       BOTÕES
-    ====================== */
-    button {
-        background-color: #5d1d18 !important;
-        color: #ffffff !important;
-        border-radius: 10px;
-    }
-
-    button:hover {
-        background-color: #fdaf19 !important;
-        color: #5d1d18 !important;
-    }
-
     </style>
     """,
     unsafe_allow_html=True
 )
-
 
 # =====================
 # HEADER
