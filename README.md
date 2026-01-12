@@ -214,10 +214,40 @@ atividade6
 - **Pathlib & OS** – manipulação de caminhos e sistema de arquivos
 
 
-## Limitações Conhecidas
+## Limitações do Projeto
 
-Não mostra ou gera imagens.
-Tem dificuldade de manter contexto da conversa (tipo manter o assunto do histórico do chat).
+### Imagens provenientes do acervo local
+
+Uma das limitações identificadas neste projeto refere-se à impossibilidade de geração dinâmica de imagens pelo chatbot. Diante disso, optou-se por utilizar exclusivamente imagens provenientes do acervo local do projeto, estabelecendo uma correlação direta entre os nomes dos pratos e suas respectivas imagens previamente armazenadas. Essa decisão garante consistência visual, porém restringe a flexibilidade do sistema.
+
+### Escopo limitado do dataset
+
+O sistema opera com um conjunto fixo e relativamente reduzido de documentos, composto por fichas técnicas em PDF, imagens de pratos e um arquivo CSV com metadados. Como consequência, as respostas geradas pelo pipeline RAG estão estritamente limitadas ao conteúdo disponível no dataset, não sendo generalizáveis para outros restaurantes ou contextos gastronômicos distintos.
+
+### Qualidade e estrutura dos documentos de origem
+
+Os documentos de origem apresentam variações de formatação e, em alguns casos, dependem de técnicas de OCR (Tesseract) para extração de texto. Além disso, podem conter ruídos oriundos do processo de digitalização ou da conversão dos arquivos. Esses fatores impactam diretamente a qualidade da extração textual, afetando a geração de embeddings e, consequentemente, a precisão das respostas produzidas pelo sistema.
+
+### Ausência de avaliação quantitativa do RAG
+
+O projeto não contempla a implementação de métricas quantitativas formais para avaliação do desempenho do pipeline RAG, como precisão da recuperação, recall dos documentos ou métodos automatizados de avaliação das respostas. Dessa forma, a validação do sistema é predominantemente qualitativa, baseada em testes manuais e observação empírica dos resultados.
+
+### Dependência de serviços externos de IA
+
+A utilização do Azure OpenAI introduz uma dependência direta de serviços externos de inteligência artificial, o que implica a necessidade de credenciais válidas, disponibilidade contínua do serviço e possíveis custos associados em ambientes produtivos. Em função disso, o projeto não é completamente independente de infraestrutura externa.
+
+### Escalabilidade limitada do pipeline atual
+
+O pipeline foi concebido com finalidade educacional e demonstrativa, não sendo projetado para lidar com grandes volumes de documentos, múltiplos usuários simultâneos ou indexação incremental em larga escala. Como resultado, a solução não se encontra otimizada para cenários de produção complexos ou de alta demanda.
+
+### Interface com funcionalidades básicas
+
+A interface desenvolvida em Streamlit é funcional e adequada para demonstração técnica, porém apresenta limitações, como a ausência de autenticação, inexistência de histórico persistente de consultas e falta de mecanismos avançados de personalização da experiência do usuário. O foco principal está na validação técnica do sistema, e não na entrega de um produto completo.
+
+### Contexto educacional e não comercial
+
+Os dados utilizados no projeto foram adaptados de um restaurante real e são empregados exclusivamente para fins educacionais. Dessa forma, o sistema não deve ser utilizado em contextos comerciais nem como fonte oficial de informação, respeitando os limites éticos e legais do uso dos dados.
+
 
 ---
 
