@@ -217,7 +217,7 @@ def eh_pergunta_de_categorias(pergunta: str) -> bool:
 # =====================
 # MAIN
 # =====================
-def generate_answer(query: str, top_k=5, temperature=0.2, min_score=0.28):
+def answer_question(query: str, top_k=5, temperature=0.2, min_score=0.28):
 
     # 1) LISTAR PRATOS POR CATEGORIA
     if eh_pergunta_listar_itens_categoria(query):
