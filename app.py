@@ -157,24 +157,54 @@ with st.sidebar:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# guarda memória (prato atual / última pergunta etc.)
+if "rag_state" not in st.session_state:
+    st.session_state.rag_state = {}
+
 # =====================
 # CHAT HISTORY
 # =====================
 for msg in st.session_state.messages:
+    # quebra de linha bonita dentro do HTML
+    content_html = str(msg.get("content", "")).replace("\n", "<br>")
+
     if msg["role"] == "assistant":
+        # título do prato (se houver)
+        if msg.get("dish_title"):
+            st.markdown(
+                f"""
+                <div class="chat-bot-wrapper">
+                    <div class="chat-card"><b>{msg["dish_title"]}</b></div>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        # imagem do prato (se houver)
+        if msg.get("dish_image"):
+            st.image(msg["dish_image"], use_container_width=True)
+
+        # resposta
         st.markdown(
             f"""
             <div class="chat-bot-wrapper">
-                <div class="chat-card">{msg['content']}</div>
+                <div class="chat-card">{content_html}</div>
             </div>
             """,
             unsafe_allow_html=True
         )
+
+        # fontes (opcional)
+        if msg.get("sources"):
+            with st.expander("Fontes"):
+                for s in msg["sources"]:
+                    st.write(f"- {s}")
+
     else:
         st.markdown(
             f"""
             <div class="chat-user-wrapper">
-                <div class="chat-card">{msg['content']}</div>
+                <div class="chat-card">{content_html}</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -186,10 +216,7 @@ for msg in st.session_state.messages:
 prompt = st.chat_input("O que você gostaria de saber hoje?")
 
 if prompt:
-    # mostra pergunta imediatamente
-    st.session_state.messages.append(
-        {"role": "user", "content": prompt}
-    )
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
     st.markdown(
         f"""
@@ -202,22 +229,59 @@ if prompt:
 
     with st.spinner("Conferindo o cardápio..."):
         try:
-            response = answer_question(prompt)
+            result = answer_question(prompt, state=st.session_state.rag_state)
+
+            # atualiza a memória do chat
+            st.session_state.rag_state = result.get("state", st.session_state.rag_state)
+
+            response_text = result.get("text", "")
+            dish_title = result.get("dish_title")
+            dish_image = result.get("dish_image")
+            sources = result.get("sources", [])
+
         except Exception:
-            response = (
+            response_text = (
                 "Não consegui encontrar essa informação agora. "
                 "Pode tentar novamente?"
             )
+            dish_title, dish_image, sources = None, None, []
 
-    st.session_state.messages.append(
-        {"role": "assistant", "content": response}
-    )
+    # salva resposta completa no histórico
+    st.session_state.messages.append({
+        "role": "assistant",
+        "content": response_text,
+        "dish_title": dish_title,
+        "dish_image": dish_image,
+        "sources": sources
+    })
+
+    # render imediato
+    response_html = response_text.replace("\n", "<br>")
+
+    if dish_title:
+        st.markdown(
+            f"""
+            <div class="chat-bot-wrapper">
+                <div class="chat-card"><b>{dish_title}</b></div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    if dish_image:
+        st.image(dish_image, use_container_width=True)
 
     st.markdown(
         f"""
         <div class="chat-bot-wrapper">
-            <div class="chat-card">{response}</div>
+            <div class="chat-card">{response_html}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
+
+    if sources:
+        with st.expander("Fontes"):
+            for s in sources:
+                st.write(f"- {s}")
+
