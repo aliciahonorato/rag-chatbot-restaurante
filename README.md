@@ -217,6 +217,7 @@ atividade6
 ## Limitações Conhecidas
 
 Não mostra ou gera imagens.
+Tem dificuldade de manter contexto da conversa (tipo manter o assunto do histórico do chat).
 
 ---
 
