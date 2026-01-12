@@ -216,7 +216,7 @@ atividade6
 
 ## Limitações Conhecidas
 
-A confirmar.
+Não mostra ou gera imagens.
 
 ---
 
