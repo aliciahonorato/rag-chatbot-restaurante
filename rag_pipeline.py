@@ -156,12 +156,26 @@ def slugify_title(title: str) -> str:
 def get_image_path_for_dish(title: str):
     if not title:
         return None
-    slug = slugify_title(title)
-    for ext in [".jpg"]:
+
+    slug = slugify_title(title)  
+
+    # 1) tenta direto (caso exista sem prefixo)
+    for ext in [".jpg", ".jpeg", ".png", ".webp"]:
         p = IMAGENS_DIR / f"{slug}{ext}"
         if p.exists():
             return str(p)
+
+    # 2) procura arquivo que contenha o slug
+    if IMAGENS_DIR.exists():
+        slug_lower = slug.lower()
+        for p in IMAGENS_DIR.iterdir():
+            if p.is_file():
+                name_lower = p.name.lower()
+                if slug_lower in name_lower:
+                    return str(p)
+
     return None
+
 
 # =====================
 # MAPAS (título -> categoria) e match de prato
