@@ -176,7 +176,6 @@ def get_image_path_for_dish(title: str):
 
     return None
 
-
 # =====================
 # MAPAS (título -> categoria) e match de prato
 # =====================
