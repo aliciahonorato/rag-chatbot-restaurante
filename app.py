@@ -164,29 +164,46 @@ if "rag_state" not in st.session_state:
 # =====================
 # CHAT HISTORY
 # =====================
-seen_deshies = set()
+
+# controla para mostrar imagem apenas 1 vez por prato durante o render da página
+seen_dishes = set()
 
 for msg in st.session_state.messages:
     # quebra de linha bonita dentro do HTML
     content_html = str(msg.get("content", "")).replace("\n", "<br>")
 
-    if msg["role"] == "assistant":
-        # título do prato (se houver)
-        if msg.get("dish_title"):
+    if msg.get("role") == "assistant":
+        dish_title = msg.get("dish_title")
+        dish_image = msg.get("dish_image")
+
+        # chave do prato (pra não repetir)
+        dish_key = (dish_title or "").strip().lower()
+
+        # só mostra imagem se:
+        # 1) pipeline pediu pra mostrar (show_image=True)
+        # 2) tem prato e tem imagem
+        # 3) ainda não mostramos esse prato nessa renderização
+        show_dish_media = bool(
+            msg.get("show_image") and dish_key and dish_image and dish_key not in seen_dishes
+        )
+
+        if show_dish_media:
+            seen_dishes.add(dish_key)
+
+            # título do prato em card
             st.markdown(
                 f"""
                 <div class="chat-bot-wrapper">
-                    <div class="chat-card"><b>{msg["dish_title"]}</b></div>
+                    <div class="chat-card"><b>{dish_title}</b></div>
                 </div>
                 """,
                 unsafe_allow_html=True
             )
 
-        # imagem do prato (se houver)
-        if msg.get("dish_image"):
-            st.image(msg["dish_image"], use_container_width=True)
+            # imagem do prato (fora do HTML, porque st.image é melhor)
+            st.image(dish_image, use_container_width=True)
 
-        # resposta
+        # mensagem do bot
         st.markdown(
             f"""
             <div class="chat-bot-wrapper">
@@ -197,12 +214,14 @@ for msg in st.session_state.messages:
         )
 
         # fontes (opcional)
-        if msg.get("sources"):
+        sources = msg.get("sources", [])
+        if sources:
             with st.expander("Fontes"):
-                for s in msg["sources"]:
+                for s in sources:
                     st.write(f"- {s}")
 
     else:
+        # mensagem do usuário
         st.markdown(
             f"""
             <div class="chat-user-wrapper">
@@ -250,41 +269,43 @@ if prompt:
 
     # salva resposta completa no histórico
     st.session_state.messages.append({
-        "role": "assistant",
-        "content": response_text,
-        "dish_title": dish_title,
-        "dish_image": dish_image,
-        "sources": sources
-    })
+    "role": "assistant",
+    "content": response_text,
+    "dish_title": dish_title,
+    "dish_image": dish_image,
+    "sources": sources,
+    "show_image": result.get("show_image", False)
+})
+
     st.rerun()
-    
-    # render imediato
-    response_html = response_text.replace("\n", "<br>")
 
-    if dish_title:
-        st.markdown(
-            f"""
-            <div class="chat-bot-wrapper">
-                <div class="chat-card"><b>{dish_title}</b></div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    # # render imediato
+    # response_html = response_text.replace("\n", "<br>")
 
-    if dish_image:
-        st.image(dish_image, use_container_width=True)
+    # if dish_title:
+    #     st.markdown(
+    #         f"""
+    #         <div class="chat-bot-wrapper">
+    #             <div class="chat-card"><b>{dish_title}</b></div>
+    #         </div>
+    #         """,
+    #         unsafe_allow_html=True
+    #     )
 
-    st.markdown(
-        f"""
-        <div class="chat-bot-wrapper">
-            <div class="chat-card">{response_html}</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # if dish_image:
+    #     st.image(dish_image, width=420)
 
-    if sources:
-        with st.expander("Fontes"):
-            for s in sources:
-                st.write(f"- {s}")
+    # st.markdown(
+    #     f"""
+    #     <div class="chat-bot-wrapper">
+    #         <div class="chat-card">{response_html}</div>
+    #     </div>
+    #     """,
+    #     unsafe_allow_html=True
+    # )
+
+    # if sources:
+    #     with st.expander("Fontes"):
+    #         for s in sources:
+    #             st.write(f"- {s}")
 
