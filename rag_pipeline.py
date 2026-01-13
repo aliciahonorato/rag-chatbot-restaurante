@@ -145,7 +145,7 @@ def retrieve_by_dish_title(dish_title: str, top_k: int = 8):
     df = rag_dataset.copy()
     df["__titulo_norm"] = df["titulo"].fillna("").astype(str).apply(_norm_text)
 
-    # prioriza PDFs (texto real da ficha técnica)
+    # prioriza PDFs (texto real)
     if "tipo" in df.columns:
         df_pdf = df[df["tipo"].astype(str).str.lower() == "pdf"].copy()
     else:
@@ -154,7 +154,7 @@ def retrieve_by_dish_title(dish_title: str, top_k: int = 8):
     # match exato normalizado
     hits = df_pdf[df_pdf["__titulo_norm"] == dish_norm].copy()
 
-    # fallback: se não achou exato, tenta "contém"
+    # fallback: "contém"
     if hits.empty:
         hits = df_pdf[df_pdf["__titulo_norm"].str.contains(dish_norm, na=False)].copy()
 
@@ -164,20 +164,18 @@ def retrieve_by_dish_title(dish_title: str, top_k: int = 8):
     hits["score"] = 1.0
     return hits.head(top_k)
 
+
 def format_context(rows, max_chars: int = 4500):
     parts, total = [], 0
-
     for r in rows.itertuples():
         tag = f"[Fonte: {r.document_id} | chunk {r.chunk_id}]"
         block = f"{tag}\n{str(r.chunks).strip()}\n"
-
         if total + len(block) > max_chars:
             break
-
         parts.append(block)
         total += len(block)
-
     return "\n".join(parts)
+
 
 #===================
 #IMAGNES(título -> arquivo)
@@ -424,27 +422,23 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             "state": state
         }
     # =====================
-    # 4) RAG normal (com fallback por prato)
+    # 4) RAG normal
     # =====================
 
-    # 4.1) Se já identificou um prato, tenta pegar diretamente no CSV pelo título
-    hits = pd.DataFrame()
+    # A) Se eu já sei qual é o prato, tento puxar diretamente os chunks dele
+    hits = rag_dataset.iloc[0:0].copy()
     if prato_atual:
-        hits = retrieve_by_dish_title(prato_atual, top_k=12)
+        hits = retrieve_by_dish_title(prato_atual, top_k=8)
 
-    # 4.2) Se não achou nada por título, usa FAISS normal
-    if hits is None or hits.empty:
-        hits_all = retrieve_faiss(query, top_k=max(top_k, 30))
+    # B) Se não achou por título, cai no FAISS (busca semântica normal)
+    if hits.empty:
+        hits = retrieve_faiss(query, top_k=top_k)
 
-        # threshold normal
-        hits = hits_all[hits_all["score"] >= min_score].copy()
+        # threshold só faz sentido no FAISS
+        hits = hits[hits["score"] >= min_score]
 
-        # fallback: se prato existe e ficou vazio, reduz threshold
-        if hits.empty and prato_atual:
-            hits = hits_all[hits_all["score"] >= 0.15].copy()
-
-        # se houver prato atual, tenta focar nele (quando possível)
-        if prato_atual and "titulo" in hits.columns and not hits.empty:
+        # tenta focar no prato dentro dos hits (se existir)
+        if prato_atual and "titulo" in hits.columns:
             hits_prato = hits[hits["titulo"].astype(str).str.lower().str.contains(prato_atual.lower(), na=False)]
             if len(hits_prato) > 0:
                 hits = hits_prato.copy()
@@ -454,10 +448,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
 
     if hits.empty:
         return {
-            "text": (
-                "Encontrei o prato, mas não achei detalhes suficientes no meu dataset de texto "
-                "para responder com segurança (ingredientes/preparo/tempo etc.)."
-            ),
+            "text": "Não encontrei informações suficientes na base para responder a essa pergunta.",
             "sources": [],
             "dish_title": prato_atual,
             "dish_image": dish_image,
@@ -483,7 +474,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
-        temperature=0.3,
+        temperature=0.2,
     )
 
     sources = [f"{r.document_id} (chunk {r.chunk_id})" for r in hits.itertuples()]
