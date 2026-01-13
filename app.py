@@ -279,33 +279,33 @@ if prompt:
 
     st.rerun()
 
-    # # render imediato
-    # response_html = response_text.replace("\n", "<br>")
+    # render imediato
+    response_html = response_text.replace("\n", "<br>")
 
-    # if dish_title:
-    #     st.markdown(
-    #         f"""
-    #         <div class="chat-bot-wrapper">
-    #             <div class="chat-card"><b>{dish_title}</b></div>
-    #         </div>
-    #         """,
-    #         unsafe_allow_html=True
-    #     )
+    if dish_title:
+        st.markdown(
+            f"""
+            <div class="chat-bot-wrapper">
+                <div class="chat-card"><b>{dish_title}</b></div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-    # if dish_image:
-    #     st.image(dish_image, width=420)
+    if dish_image:
+        st.image(dish_image, width=420)
 
-    # st.markdown(
-    #     f"""
-    #     <div class="chat-bot-wrapper">
-    #         <div class="chat-card">{response_html}</div>
-    #     </div>
-    #     """,
-    #     unsafe_allow_html=True
-    # )
+    st.markdown(
+        f"""
+        <div class="chat-bot-wrapper">
+            <div class="chat-card">{response_html}</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    # if sources:
-    #     with st.expander("Fontes"):
-    #         for s in sources:
-    #             st.write(f"- {s}")
+    if sources:
+        with st.expander("Fontes"):
+            for s in sources:
+                st.write(f"- {s}")
 
