@@ -164,6 +164,8 @@ if "rag_state" not in st.session_state:
 # =====================
 # CHAT HISTORY
 # =====================
+seen_deshies = set()
+
 for msg in st.session_state.messages:
     # quebra de linha bonita dentro do HTML
     content_html = str(msg.get("content", "")).replace("\n", "<br>")
@@ -254,7 +256,8 @@ if prompt:
         "dish_image": dish_image,
         "sources": sources
     })
-
+    st.rerun()
+    
     # render imediato
     response_html = response_text.replace("\n", "<br>")
 
