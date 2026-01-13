@@ -293,7 +293,7 @@ if prompt:
         )
 
     if dish_image:
-        st.image(dish_image, width=420)
+        st.image(dish_image, width=120)
 
     st.markdown(
         f"""
