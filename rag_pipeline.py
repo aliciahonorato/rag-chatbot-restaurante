@@ -436,7 +436,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
-        temperature=0.2,
+        temperature=0.3,
     )
 
     sources = [f"{r.document_id} (chunk {r.chunk_id})" for r in hits.itertuples()]
