@@ -46,7 +46,7 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* SIDEBAR  */
+    /* SIDEBAR – dourado mais claro */
     section[data-testid="stSidebar"] {
         background-color: #f3ca75;
     }
