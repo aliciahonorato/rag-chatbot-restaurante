@@ -257,6 +257,29 @@ def listar_pratos_da_categoria(cat: str):
     )
     return sorted(set([p for p in pratos if p and p.lower() != "nan"]))
 
+def listar_pratos_da_categoria(cat: str):
+    df_menu = rag_dataset[rag_dataset["tipo"].astype(str).str.lower() == "pdf"].copy()
+    pratos = (
+        df_menu.loc[df_menu["categoria_corr"] == cat, "titulo"]
+        .dropna().astype(str).str.strip().unique().tolist()
+    )
+    return sorted(set([p for p in pratos if p and p.lower() != "nan"]))
+
+
+# ✅ ADICIONE ESSA FUNÇÃO AQUI
+def listar_todos_pratos():
+    df_menu = rag_dataset[rag_dataset["tipo"].astype(str).str.lower() == "pdf"].copy()
+
+    pratos = (
+        df_menu["titulo"]
+        .dropna().astype(str).str.strip()
+        .unique().tolist()
+    )
+
+    # limpa "nan" e strings vazias e ordena
+    pratos = sorted(set([p for p in pratos if p and p.lower() != "nan"]))
+    return pratos
+
 def eh_pergunta_listar_itens_categoria(pergunta: str) -> bool:
     p = pergunta.lower()
     tem_intencao = any(k in p for k in [
@@ -287,6 +310,20 @@ def eh_pergunta_de_categorias(pergunta: str) -> bool:
         "categorias do cardapio",
         "categorias do cardápio",
         "todas as categorias",
+    ]
+    return any(g in p for g in gatilhos)
+
+def eh_pergunta_listar_todos_itens_cardapio(pergunta: str) -> bool:
+    p = _norm_text(pergunta)
+    gatilhos = [
+        "itens do cardapio", "itens do cardápio",
+        "quais os itens do cardapio", "quais os itens do cardápio",
+        "listar cardapio", "listar cardápio",
+        "me mostre o cardapio", "me mostre o cardápio",
+        "cardapio completo", "cardápio completo",
+        "todas as opcoes", "todas as opções",
+        "todas as comidas", "todas as receitas",
+        "menu completo", "menu inteiro"
     ]
     return any(g in p for g in gatilhos)
 
@@ -421,6 +458,33 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             "show_image": False,
             "state": state
         }
+        # 3.5) LISTAR TODOS OS ITENS DO CARDÁPIO (determinístico)
+    if eh_pergunta_listar_todos_itens_cardapio(query):
+        pratos = listar_todos_pratos()
+
+        if not pratos:
+            return {
+                "text": "Não encontrei itens do cardápio na base atual.",
+                "sources": ["rag_dataset_chunks.csv (títulos do cardápio)"],
+                "dish_title": None,
+                "dish_image": None,
+                "show_image": False,
+                "state": state
+            }
+
+        # OBS: resposta pode ficar grande, mas vai listar tudo.
+        texto = "Itens do cardápio:\n- " + "\n- ".join(pratos)
+        texto += f"\n\nTotal: {len(pratos)} itens."
+
+        return {
+            "text": texto,
+            "sources": ["rag_dataset_chunks.csv (títulos do cardápio)"],
+            "dish_title": None,
+            "dish_image": None,
+            "show_image": False,
+            "state": state
+        }
+
     # =====================
     # 4) RAG normal
     # =====================
