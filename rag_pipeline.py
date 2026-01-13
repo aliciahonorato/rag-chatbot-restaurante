@@ -308,14 +308,18 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
         return {
             "text": m,
             "sources": ["sistema (data/hora/contexto)"],
-            "dish_title": state.get("current_dish"),
-            "dish_image": get_image_path_for_dish(state.get("current_dish")) if state.get("current_dish") else None,
+            "dish_title": None,
+            "dish_image": None,
+            "show_image": False,
             "state": state
         }
+    
+    dish_mentioned = False
 
     # detecta prato na pergunta
     tnorm = encontrar_prato_na_pergunta(query)
     if tnorm and tnorm in TITULO_NORM_TO_ORIG:
+        dish_mentioned = True
         prato_atual = TITULO_NORM_TO_ORIG[tnorm]
         state["current_dish"] = prato_atual
     else:
@@ -336,6 +340,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
                 "sources": [f"rag_dataset_chunks.csv (lista de pratos: {cat})"],
                 "dish_title": None,
                 "dish_image": None,
+                "show_image": False,
                 "state": state
             }
         texto = f"Pratos da categoria **{cat}**:\n- " + "\n- ".join(pratos)
@@ -345,6 +350,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             "sources": [f"rag_dataset_chunks.csv (lista de pratos: {cat})"],
             "dish_title": None,
             "dish_image": None,
+            "show_image": False,
             "state": state
         }
 
@@ -361,6 +367,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
                 "sources": [f"rag_dataset_chunks.csv (categoria do prato: {prato})"],
                 "dish_title": prato,
                 "dish_image": img,
+                "show_image": True,
                 "state": state
             }
         return {
@@ -368,6 +375,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             "sources": ["rag_dataset_chunks.csv (categoria do prato)"],
             "dish_title": prato_atual,
             "dish_image": dish_image,
+            "show_image": False,
             "state": state
         }
 
@@ -380,6 +388,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             "sources": ["rag_dataset_chunks.csv (categorias oficiais)"],
             "dish_title": None,
             "dish_image": None,
+            "show_image": False,
             "state": state
         }
     # =====================
@@ -405,6 +414,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
             "sources": [],
             "dish_title": prato_atual,
             "dish_image": dish_image,
+            "show_image": dish_mentioned,
             "state": state
         }
 
@@ -436,6 +446,7 @@ def answer_question(query: str, state: dict | None = None, top_k: int = 10, min_
         "sources": sources,
         "dish_title": prato_atual,
         "dish_image": dish_image,
+        "show_image": dish_mentioned,
         "state": state
     }
 
