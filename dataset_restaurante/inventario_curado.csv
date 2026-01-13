@@ -1,53 +1,55 @@
-document_id,tipo,path_arquivo,titulo,origem,data,categoria,versao,nivel_confianca,is_duplicate,duplicate_group,versao_rag,duplicate_policy
-PDF_001,pdf,fichas_tecnicas/ficha_01_baiao_de_dois.pdf,Baiao-de-Dois,Ficha técnica oficial,2025-02-05,Tradicionais,v1.0,alto,False,,v1,
-PDF_002,pdf,fichas_tecnicas/ficha_02_favada.pdf,Favada,Ficha técnica oficial,2025-12-04,Tradicionais,v1.0,alto,False,,v1,
-PDF_003,pdf,fichas_tecnicas/ficha_03_feijao_de_corda.pdf,Feijao-de-Corda,Ficha técnica oficial,2025-05-31,Tradicionais,v1.0,alto,False,,v1,
-PDF_004,pdf,fichas_tecnicas/ficha_04_sarapatel.pdf,Sarapatel,Ficha técnica oficial,15/03/2025,Tradicionais,v1.0,alto,False,,v1,
-PDF_005,pdf,fichas_tecnicas/ficha_05_caldo_de_mocoto.pdf,Caldo de Mocoto,Ficha técnica oficial,11-05-2025,Tradicionais,v1.0,alto,False,,v1,
-PDF_006,pdf,fichas_tecnicas/ficha_06_mocofava.pdf,Mocofava,Ficha técnica oficial,15-03-2025,Especialidades,v1.0,alto,False,DUP_75071545,v1,
-PDF_007,pdf,fichas_tecnicas/ficha_07_moqueca_sertaneja.pdf,Moqueca Sertaneja,Ficha técnica oficial,28/11/2025,Especialidades,v1.0,alto,False,,v1,
-PDF_008,pdf,fichas_tecnicas/ficha_08_carne_de_sol_na_brasa.pdf,Carne-de-Sol na Brasa,Ficha técnica oficial,28-04-2025,Especialidades,v1.0,alto,False,,v1,
-PDF_009,pdf,fichas_tecnicas/ficha_09_carne_seca_desfiada.pdf,Carne-Seca Desfiada,Ficha técnica oficial,16-08-2025,Sobremesas,v1.0,alto,False,,v1,
-PDF_010,pdf,fichas_tecnicas/ficha_10_atolado_de_vaca.pdf,Atolado de Vaca,Ficha técnica oficial,31-01-2025,Especialidades,v1.0,alto,False,,v1,
-PDF_011,pdf,fichas_tecnicas/ficha_11_dobradinha.pdf,Dobradinha,Ficha técnica oficial,20/06/2025,Especialidades,v1.0,alto,False,,v1,
-PDF_012,pdf,fichas_tecnicas/ficha_12_rabada.pdf,Rabada,Ficha técnica oficial,25/06/2025,Especialidades,v1.0,alto,False,,v1,
-PDF_013,pdf,fichas_tecnicas/ficha_13_costelinha_de_porco_recheada.pdf,Costelinha de Porco Recheada,Ficha técnica oficial,2025-07-10,Especialidades,v1.0,alto,False,,v1,
-PDF_014,pdf,fichas_tecnicas/ficha_14_salada_nordestina.pdf,Salada Nordestina,Ficha técnica oficial,29/07/2025,Saladas,v1.0,alto,False,,v1,
-PDF_015,pdf,fichas_tecnicas/ficha_15_salada_de_maxixe.pdf,Salada de Maxixe,Ficha técnica oficial,02-09-2025,Saladas,v1.0,alto,False,,v1,
-PDF_016,pdf,fichas_tecnicas/ficha_16_vinagrete_sertanejo.pdf,Vinagrete Sertanejo,Ficha técnica oficial,15/03/2025,Saladas,v1.0,alto,False,DUP_18472447,v1,
-PDF_017,pdf,fichas_tecnicas/ficha_17_sorvete_de_rapadura.pdf,Sorvete de Rapadura,Ficha técnica oficial,2025-09-22,Sobremesas,v1.0,alto,False,,v1,
-PDF_018,pdf,fichas_tecnicas/ficha_18_sorvete_de_doce_de_leite.pdf,Sorvete de Doce de Leite,Ficha técnica oficial,06-01-2025,Sobremesas,v1.0,alto,False,,v1,
-PDF_019,pdf,fichas_tecnicas/ficha_19_pudim_de_tapioca.pdf,Pudim de Tapioca,Ficha técnica oficial,2025-04-18,Sobremesas,v1.0,alto,False,,v1,
-PDF_020,pdf,fichas_tecnicas/ficha_20_musse_de_chocolate_com_cachaca.pdf,Musse de Chocolate com Cachaça,Ficha técnica oficial,04/08/2025,Sobremesas,v1.0,alto,False,,v1,
-PDF_021,pdf,fichas_tecnicas/ficha_21_creme_brulee_de_doce_de_leite.pdf,Creme Brulee de Doce de Leite,Ficha técnica oficial,08-03-2025,Sobremesas,v1.0,alto,False,,v1,
-PDF_022,pdf,fichas_tecnicas/ficha_22_cocada_cremosa.pdf,Cocada Cremosa,Ficha técnica oficial,21/08/2025,Sobremesas,v1.0,alto,False,,v1,
-PDF_023,pdf,fichas_tecnicas/ficha_23_cartola.pdf,Cartola,Ficha técnica oficial,2025-11-23,Sobremesas,v1.0,alto,False,,v1,
-PDF_024,pdf,fichas_tecnicas/ficha_24_bolo_de_rolo.pdf,Bolo de Rolo,Ficha técnica oficial,2025-04-19,Sobremesas,v1.0,alto,False,,v1,
-PDF_025,pdf,fichas_tecnicas/ficha_25_quindim.pdf,Quindim,Ficha técnica oficial,2025-07-12,Sobremesas,v1.0,alto,False,,v1,
-PDF_026,pdf,fichas_tecnicas/ficha_26_pacoca_de_pilao.pdf,Paçoca de Pilao,Ficha técnica oficial,2025-05-15,Tradicionais,v1.0,alto,False,,v1,
-IMG_001,imagem,imagens/img_01_baiao_de_dois.jpg,Empratamento - Baiao-de-Dois,Manual interno do restaurante,2025-02-16,Tradicionais,v1.0,alto,False,,v1,
-IMG_002,imagem,imagens/img_02_favada.jpg,Empratamento - Favada,Manual interno do restaurante,2025-01-28,Tradicionais,v1.0,alto,False,,v1,
-IMG_003,imagem,imagens/img_03_feijao_de_corda.jpg,Empratamento - Feijao-de-Corda,Manual interno do restaurante,21/07/2025,Tradicionais,v1.0,alto,False,,v1,
-IMG_004,imagem,imagens/img_04_sarapatel.jpg,Empratamento - Sarapatel,Manual interno do restaurante,2025-06-26,Tradicionais,v1.0,alto,False,,v1,
-IMG_005,imagem,imagens/img_05_caldo_de_mocoto.jpg,Empratamento - Caldo de Mocoto,Manual interno do restaurante,16/06/2025,Tradicionais,v1.0,alto,False,,v1,
-IMG_006,imagem,imagens/img_06_mocofava.jpg,Empratamento - Mocofava,Manual interno do restaurante,2025-03-26,Especialidades,v1.0,alto,False,,v1,
-IMG_007,imagem,imagens/img_07_moqueca_sertaneja.jpg,Empratamento - Moqueca Sertaneja,Manual interno do restaurante,2025-02-18,Especialidades,v1.0,alto,False,,v1,
-IMG_008,imagem,imagens/img_08_carne_de_sol_na_brasa.jpg,Empratamento - Carne-de-Sol na Brasa,Manual interno do restaurante,2025-11-30,Especialidades,v1.0,alto,False,,v1,
-IMG_009,imagem,imagens/img_09_carne_seca_desfiada.jpg,Empratamento - Carne-Seca Desfiada,Manual interno do restaurante,2025-04-13,Especialidades,v1.0,alto,False,,v1,
-IMG_010,imagem,imagens/img_10_atolado_de_vaca.jpg,Empratamento - Atolado de Vaca,Manual interno do restaurante,2025-02-13,Especialidades,v1.0,alto,False,,v1,
-IMG_011,imagem,imagens/img_11_dobradinha.jpg,Empratamento - Dobradinha,Manual interno do restaurante,06/09/2025,Especialidades,v1.0,alto,False,,v1,
-IMG_012,imagem,imagens/img_012_rabada.jpg,Empratamento - Rabada,Manual interno do restaurante,2025-07-25,Especialidades,v1.0,alto,False,,v1,
-IMG_013,imagem,imagens/img_13_costelinha_de_porco_recheada.jpg,Empratamento - Costelinha de Porco Recheada,Manual interno do restaurante,17/10/2025,Especialidades,v1.0,alto,False,,v1,
-IMG_014,imagem,imagens/img_14_salada_nordestina.jpg,Empratamento - Salada Nordestina,Manual interno do restaurante,22/06/2025,Saladas,v1.0,alto,False,,v1,
-IMG_015,imagem,imagens/img_15_salada_de_maxixe.jpg,Empratamento - Salada de Maxixe,Manual interno do restaurante,2025-10-22,Saladas,v1.0,alto,False,,v1,
-IMG_016,imagem,imagens/img_16_vinagrete_sertanejo.jpg,Empratamento - Vinagrete Sertanejo,Manual interno do restaurante,2025-08-21,Saladas,v1.0,alto,False,,v1,
-IMG_017,imagem,imagens/img_17_sorvete_de_rapadura.jpg,Empratamento - Sorvete de Rapadura,Manual interno do restaurante,2025-11-24,Sobremesas,v1.0,alto,False,,v1,
-IMG_018,imagem,imagens/img_18_sorvete_de_doce_de_leite.jpg,Empratamento - Sorvete de Doce de Leite,Manual interno do restaurante,25/01/2025,Sobremesas,v1.0,alto,False,,v1,
-IMG_019,imagem,imagens/img_19_pudim_de_tapioca.jpg,Empratamento - Pudim de Tapioca,Manual interno do restaurante,23/08/2025,Sobremesas,v1.0,alto,False,,v1,
-IMG_020,imagem,imagens/img_20_mousse_de_chocolate_com_cachaca.jpg,Empratamento - Musse de Chocolate com Cachaca,Manual interno do restaurante,2025-10-01,Sobremesas,v1.0,alto,False,,v1,
-IMG_021,imagem,imagens/img_21_creme_brulee_doce_de_leite_e_umburana.jpg,Empratamento - Creme Brulee de Doce de Leite,Manual interno do restaurante,2025-03-21,Sobremesas,v1.0,alto,False,,v1,
-IMG_022,imagem,imagens/img_022_cocada_cremosa.jpg,Empratamento - Cocada Cremosa,Manual interno do restaurante,24/07/2025,Sobremesas,v1.0,alto,False,,v1,
-IMG_023,imagem,imagens/img_23_cartola.jpg,Empratamento - Cartola,Manual interno do restaurante,10/10/2025,Sobremesas,v1.0,alto,False,,v1,
-IMG_024,imagem,imagens/img_24_bolo_de_rolo.jpg,Empratamento - Bolo de Rolo,Manual interno do restaurante,10/01/2025,Sobremesas,v1.0,alto,False,,v1,
-IMG_025,imagem,imagens/img_25_quindim.jpg,Empratamento - Quindim,Manual interno do restaurante,20/08/2025,Sobremesas,v1.0,alto,False,,v1,
-IMG_026,imagem,imagens/img_26_pacoca_pilao.jpg,Empratamento - Pacoca de Pilao,Manual interno do restaurante,08/09/2025,Sobremesas,v1.0,alto,False,,v1,
+document_id,tipo,path_arquivo,titulo,origem,data,categoria,versao,nivel_confianca
+PDF_001,pdf,fichas_tecnicas/ficha_01_baiao_de_dois.pdf,Baiao-de-Dois,Ficha técnica oficial,2025-02-05,Tradicionais,v1.0,alto
+PDF_002,pdf,fichas_tecnicas/ficha_02_favada.pdf,Favada,Ficha técnica oficial,2025-12-04,Tradicionais,v1.0,alto
+PDF_003,pdf,fichas_tecnicas/ficha_03_feijao_de_corda.pdf,Feijao-de-Corda,Ficha técnica oficial,2025-05-31,Tradicionais,v1.0,alto
+PDF_004,pdf,fichas_tecnicas/ficha_04_sarapatel.pdf,Sarapatel,Ficha técnica oficial,15/03/2025,Tradicionais,v1.0,alto
+PDF_005,pdf,fichas_tecnicas/ficha_05_caldo_de_mocoto.pdf,Caldo de Mocoto,Ficha técnica oficial,11-05-2025,Tradicionais,v1.0,alto
+PDF_006,pdf,fichas_tecnicas/ficha_06_mocofava.pdf,Mocofava,Ficha técnica oficial,15-03-2025,Especialidades,v1.0,alto
+PDF_007,pdf,fichas_tecnicas/ficha_07_moqueca_sertaneja.pdf,Moqueca Sertaneja,Ficha técnica oficial,28/11/2025,Especialidades,v1.0,alto
+PDF_008,pdf,fichas_tecnicas/ficha_08_carne_de_sol_na_brasa.pdf,Carne-de-Sol na Brasa,Ficha técnica oficial,28-04-2025,Especialidades,v1.0,alto
+PDF_009,pdf,fichas_tecnicas/ficha_09_carne_seca_desfiada.pdf,Carne-Seca Desfiada,Ficha técnica oficial,16-08-2025,Sobremesas,v1.0,alto
+PDF_010,pdf,fichas_tecnicas/ficha_10_atolado_de_vaca.pdf,Atolado de Vaca,Ficha técnica oficial,31-01-2025,Especialidades,v1.0,alto
+PDF_011,pdf,fichas_tecnicas/ficha_11_dobradinha.pdf,Dobradinha,Ficha técnica oficial,20/06/2025,Especialidades,v1.0,alto
+PDF_012,pdf,fichas_tecnicas/ficha_12_rabada.pdf,Rabada,Ficha técnica oficial,25/06/2025,Especialidades,v1.0,alto
+PDF_013,pdf,fichas_tecnicas/ficha_13_costelinha_de_porco_recheada.pdf,Costelinha de Porco Recheada,Ficha técnica oficial,2025-07-10,Especialidades,v1.0,alto
+PDF_014,pdf,fichas_tecnicas/ficha_14_salada_nordestina.pdf,Salada Nordestina,Ficha técnica oficial,29/07/2025,Saladas,v1.0,alto
+PDF_015,pdf,fichas_tecnicas/ficha_15_salada_de_maxixe.pdf,Salada de Maxixe,Ficha técnica oficial,02-09-2025,Saladas,v1.0,alto
+PDF_016,pdf,fichas_tecnicas/ficha_16_vinagrete_sertanejo.pdf,Vinagrete Sertanejo,Ficha técnica oficial,15/03/2025,Saladas,v1.0,alto
+PDF_017,pdf,fichas_tecnicas/ficha_17_sorvete_de_rapadura.pdf,Sorvete de Rapadura,Ficha técnica oficial,2025-09-22,Sobremesas,v1.0,alto
+PDF_018,pdf,fichas_tecnicas/ficha_18_sorvete_de_doce_de_leite.pdf,Sorvete de Doce de Leite,Ficha técnica oficial,06-01-2025,Sobremesas,v1.0,alto
+PDF_019,pdf,fichas_tecnicas/ficha_19_pudim_de_tapioca.pdf,Pudim de Tapioca,Ficha técnica oficial,2025-04-18,Sobremesas,v1.0,alto
+PDF_020,pdf,fichas_tecnicas/ficha_20_musse_de_chocolate_com_cachaca.pdf,Musse de Chocolate com Cachaça,Ficha técnica oficial,04/08/2025,Sobremesas,v1.0,alto
+PDF_021,pdf,fichas_tecnicas/ficha_21_creme_brulee_de_doce_de_leite.pdf,Creme Brulee de Doce de Leite,Ficha técnica oficial,08-03-2025,Sobremesas,v1.0,alto
+PDF_022,pdf,fichas_tecnicas/ficha_22_cocada_cremosa.pdf,Cocada Cremosa,Ficha técnica oficial,21/08/2025,Sobremesas,v1.0,alto
+PDF_023,pdf,fichas_tecnicas/ficha_23_cartola.pdf,Cartola,Ficha técnica oficial,2025-11-23,Sobremesas,v1.0,alto
+PDF_024,pdf,fichas_tecnicas/ficha_24_bolo_de_rolo.pdf,Bolo de Rolo,Ficha técnica oficial,2025-04-19,Sobremesas,v1.0,alto
+PDF_025,pdf,fichas_tecnicas/ficha_25_quindim.pdf,Quindim,Ficha técnica oficial,2025-07-12,Sobremesas,v1.0,alto
+PDF_026,pdf,fichas_tecnicas/ficha_26_pacoca_de_pilao.pdf,Paçoca de Pilao,Ficha técnica oficial,2025-05-15,Tradicionais,v1.0,alto
+IMG_001,imagem,imagens/img_01_baiao_de_dois.jpg,Empratamento - Baiao-de-Dois,Manual interno do restaurante,2025-02-16,Tradicionais,v1.0,alto
+IMG_002,imagem,imagens/img_02_favada.jpg,Empratamento - Favada,Manual interno do restaurante,2025-01-28,Tradicionais,v1.0,alto
+IMG_003,imagem,imagens/img_03_feijao_de_corda.jpg,Empratamento - Feijao-de-Corda,Manual interno do restaurante,21/07/2025,Tradicionais,v1.0,alto
+IMG_004,imagem,imagens/img_04_sarapatel.jpg,Empratamento - Sarapatel,Manual interno do restaurante,2025-06-26,Tradicionais,v1.0,alto
+IMG_005,imagem,imagens/img_05_caldo_de_mocoto.jpg,Empratamento - Caldo de Mocoto,Manual interno do restaurante,16/06/2025,Tradicionais,v1.0,alto
+IMG_006,imagem,imagens/img_06_mocofava.jpg,Empratamento - Mocofava,Manual interno do restaurante,2025-03-26,Especialidades,v1.0,alto
+IMG_007,imagem,imagens/img_07_moqueca_sertaneja.jpg,Empratamento - Moqueca Sertaneja,Manual interno do restaurante,2025-02-18,Especialidades,v1.0,alto
+IMG_008,imagem,imagens/img_08_carne_de_sol_na_brasa.jpg,Empratamento - Carne-de-Sol na Brasa,Manual interno do restaurante,2025-11-30,Especialidades,v1.0,alto
+IMG_009,imagem,imagens/img_09_carne_seca_desfiada.jpg,Empratamento - Carne-Seca Desfiada,Manual interno do restaurante,2025-04-13,Especialidades,v1.0,alto
+IMG_010,imagem,imagens/img_10_atolado_de_vaca.jpg,Empratamento - Atolado de Vaca,Manual interno do restaurante,2025-02-13,Especialidades,v1.0,alto
+IMG_011,imagem,imagens/img_11_dobradinha.jpg,Empratamento - Dobradinha,Manual interno do restaurante,06/09/2025,Especialidades,v1.0,alto
+IMG_012,imagem,imagens/IMG_12.jpg,Empratamento - Rabada,Manual interno do restaurante,2025-07-25,Especialidades,v1.0,alto
+IMG_013,imagem,imagens/img_13_costelinha_de_porco_recheada.jpg,Empratamento - Costelinha de Porco Recheada,Manual interno do restaurante,17/10/2025,Especialidades,v1.0,alto
+IMG_014,imagem,imagens/img_14_salada_nordestina.jpg,Empratamento - Salada Nordestina,Manual interno do restaurante,22/06/2025,Saladas,v1.0,alto
+IMG_015,imagem,imagens/img_15_salada_de_maxixe.jpg,Empratamento - Salada de Maxixe,Manual interno do restaurante,2025-10-22,Saladas,v1.0,alto
+IMG_016,imagem,imagens/img_16_vinagrete_sertanejo.jpg,Empratamento - Vinagrete Sertanejo,Manual interno do restaurante,2025-08-21,Saladas,v1.0,alto
+IMG_017,imagem,imagens/img_17_sorvete_de_rapadura.jpg,Empratamento - Sorvete de Rapadura,Manual interno do restaurante,2025-11-24,Sobremesas,v1.0,alto
+IMG_018,imagem,imagens/img_18_sorvete_de_doce_de_leite.jpg,Empratamento - Sorvete de Doce de Leite,Manual interno do restaurante,25/01/2025,Sobremesas,v1.0,alto
+IMG_019,imagem,imagens/img_19_pudim_de_tapioca.jpg,Empratamento - Pudim de Tapioca,Manual interno do restaurante,23/08/2025,Sobremesas,v1.0,alto
+IMG_020,imagem,imagens/img_20_mousse_de_chocolate_com_cachaca.jpg,Empratamento - Musse de Chocolate com Cachaca,Manual interno do restaurante,2025-10-01,Sobremesas,v1.0,alto
+IMG_021,imagem,imagens/img_21_creme_brulee_doce_de_leite_e_umburana.jpg,Empratamento - Creme Brulee de Doce de Leite,Manual interno do restaurante,2025-03-21,Sobremesas,v1.0,alto
+IMG_022,imagem,imagens/img_22pratofinal.jpg,Empratamento - Cocada Cremosa,Manual interno do restaurante,24/07/2025,Sobremesas,v1.0,alto
+IMG_023,imagem,imagens/img_23_cartola.jpg,Empratamento - Cartola,Manual interno do restaurante,10/10/2025,Sobremesas,v1.0,alto
+IMG_024,imagem,imagens/img_24_bolo_de_rolo.jpg,Empratamento - Bolo de Rolo,Manual interno do restaurante,10/01/2025,Sobremesas,v1.0,alto
+IMG_025,imagem,imagens/img_25_quindim.jpg,Empratamento - Quindim,Manual interno do restaurante,20/08/2025,Sobremesas,v1.0,alto
+IMG_026,imagem,imagens/img_26_pacoca_pilao.jpg,Empratamento - Pacoca de Pilao,Manual interno do restaurante,08/09/2025,Sobremesas,v1.0,alto
+PDF_006,pdf,fichas_tecnicas/ficha_06_mocofava.pdf,Mocofava,Ficha técnica oficial,15-03-2025,Especialidades,v1.0,alto
+PDF_016,pdf,fichas_tecnicas/ficha_16_vinagrete_sertanejo.pdf,Vinagrete Sertanejo,Ficha técnica oficial,15/03/2025,Saladas,v1.0,alto
